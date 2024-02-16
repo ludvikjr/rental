@@ -15,6 +15,7 @@ public class Color {
     @Column(name = "name")
     private String name;
 
+    // Constructors
     public Color() {
     }
 
@@ -23,6 +24,7 @@ public class Color {
         this.name = name;
     }
 
+    // Setters and getters
     public int getId() {
         return id;
     }

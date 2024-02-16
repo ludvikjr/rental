@@ -11,7 +11,19 @@ public class CarDto implements Serializable {
     private String model;
     private String brand;
 
+    // Constructors
+    public CarDto() {}
 
+    public CarDto(int id, String registrationNumber, String color, int mileage, String model, String brand) {
+        this.id = id;
+        this.registrationNumber = registrationNumber;
+        this.color = color;
+        this.mileage = mileage;
+        this.model = model;
+        this.brand = brand;
+    }
+
+    // Setters and getters
     public int getId() {
         return id;
     }
@@ -57,17 +69,6 @@ public class CarDto implements Serializable {
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public CarDto() {}
-
-    public CarDto(int id, String registrationNumber, String color, int mileage, String model, String brand) {
-        this.id = id;
-        this.registrationNumber = registrationNumber;
-        this.color = color;
-        this.mileage = mileage;
-        this.model = model;
         this.brand = brand;
     }
 }

@@ -30,6 +30,7 @@ public class CarModel {
         this.brand = brand;
     }
 
+    // Constructors
     public CarModel(int id, String name, Brand brand) {
         this.id = id;
         this.name = name;
@@ -38,6 +39,7 @@ public class CarModel {
 
     public CarModel() {}
 
+    // Setter and getters
     public int getId() {
         return id;
     }

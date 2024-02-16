@@ -18,6 +18,7 @@ public class Brand {
     @Column(name = "name")
     private String name;
 
+    // Constructors
     public Brand(int id, String name) {
         this.id = id;
         this.name = name;
@@ -26,6 +27,7 @@ public class Brand {
     public Brand() {
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }

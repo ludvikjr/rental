@@ -26,6 +26,19 @@ public class Car {
     @JoinColumn(name = "modelId", referencedColumnName = "id")
     private CarModel model;
 
+    // Constructors
+    public Car() {
+    }
+
+    public Car(int id, String registrationNumber, Color color, int mileage, CarModel carModel) {
+        this.id = id;
+        this.registrationNumber = registrationNumber;
+        this.color = color;
+        this.mileage = mileage;
+        this.model = carModel;
+    }
+
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -63,17 +76,6 @@ public class Car {
     }
 
     public void setModel(CarModel carModel) {
-        this.model = carModel;
-    }
-
-    public Car() {
-    }
-
-    public Car(int id, String registrationNumber, Color color, int mileage, CarModel carModel) {
-        this.id = id;
-        this.registrationNumber = registrationNumber;
-        this.color = color;
-        this.mileage = mileage;
         this.model = carModel;
     }
 }
