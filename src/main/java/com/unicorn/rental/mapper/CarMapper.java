@@ -1,7 +1,7 @@
 package com.unicorn.rental.mapper;
 
 import com.unicorn.rental.dto.CarDto;
-import com.unicorn.rental.model.car.Car;
+import com.unicorn.rental.car.Car;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

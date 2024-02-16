@@ -1,9 +1,6 @@
 package com.unicorn.rental.model.car;
 
-import com.unicorn.rental.model.car.CarModel;
 import jakarta.persistence.*;
-
-import java.util.Set;
 
 @Entity
 @Table(name = "brand")

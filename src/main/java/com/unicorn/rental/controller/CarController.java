@@ -2,14 +2,13 @@ package com.unicorn.rental.controller;
 
 import com.unicorn.rental.dto.CarDto;
 import com.unicorn.rental.service.CarService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/car")
+@RequestMapping("/api")
 public class CarController {
 
     private final CarService carService;
@@ -18,8 +17,18 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping
+    @GetMapping("/cars")
     public List<CarDto> listCars() {
         return carService.listCars();
     }
+
+    @GetMapping("car/{id}")
+    public ResponseEntity<CarDto> getCarById(@PathVariable("id") int id) {
+        CarDto carDto = carService.getCarById(id);
+
+        if (carDto == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(carDto);
+    }
+
 }

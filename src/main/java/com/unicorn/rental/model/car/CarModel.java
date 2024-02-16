@@ -2,8 +2,6 @@ package com.unicorn.rental.model.car;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 @Table(name = "car_model")
 public class CarModel {
