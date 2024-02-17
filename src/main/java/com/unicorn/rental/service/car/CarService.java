@@ -38,14 +38,13 @@ public class CarService {
         return car.map(carMapper::carToCarDto).orElse(null);
     }
 
-    public boolean createCar(CarRequestType car) {
+    public Car createCar(CarRequestType car) {
 
         Car mappedCar = carMapper.carRequestTypeToCar(car);
 
-        if (mappedCar.getModel() == null || mappedCar.getColor() == null) return false;
+        if (mappedCar.getModel() == null || mappedCar.getColor() == null) return null;
 
-        carDao.save(mappedCar);
-        return true;
+        return carDao.save(mappedCar);
     }
 
     public void deleteCarById(int id) {

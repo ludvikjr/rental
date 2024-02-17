@@ -1,6 +1,7 @@
 package com.unicorn.rental.controller;
 
 import com.unicorn.rental.domain.dto.CarDto;
+import com.unicorn.rental.domain.model.car.Car;
 import com.unicorn.rental.domain.requestTypes.CarRequestType;
 import com.unicorn.rental.domain.responseTypes.Message;
 import com.unicorn.rental.service.car.CarService;
@@ -39,9 +40,9 @@ public class CarController {
         if (car == null) return ResponseEntity.badRequest().build();
 
         try {
-            boolean isRequestBodyValid = carService.createCar(car);
+            Car savedCar = carService.createCar(car);
 
-            if (!isRequestBodyValid) return ResponseEntity.badRequest().build();
+            if (savedCar == null) return ResponseEntity.badRequest().build();
 
             return ResponseEntity.ok(new Message("Car created successfully!"));
         } catch (Exception e) {
