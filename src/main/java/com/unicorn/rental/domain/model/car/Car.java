@@ -1,4 +1,4 @@
-package com.unicorn.rental.model.car;
+package com.unicorn.rental.domain.model.car;
 
 import jakarta.persistence.*;
 
@@ -16,14 +16,14 @@ public class Car {
     private String registrationNumber;
 
     @ManyToOne
-    @JoinColumn(name = "colorId", referencedColumnName = "id")
+    @JoinColumn(name = "colorId", referencedColumnName = "id", nullable = false)
     private Color color;
 
     @Column(name = "mileage")
     private int mileage;
 
     @ManyToOne
-    @JoinColumn(name = "modelId", referencedColumnName = "id")
+    @JoinColumn(name = "modelId", referencedColumnName = "id", nullable = false)
     private CarModel model;
 
     // Constructors

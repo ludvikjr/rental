@@ -1,4 +1,4 @@
-package com.unicorn.rental.model.car;
+package com.unicorn.rental.domain.model.car;
 
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ public class Brand {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     // Constructors

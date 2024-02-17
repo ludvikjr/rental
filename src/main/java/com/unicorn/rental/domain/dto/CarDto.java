@@ -1,4 +1,4 @@
-package com.unicorn.rental.dto;
+package com.unicorn.rental.domain.dto;
 
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ public class CarDto implements Serializable {
     private String model;
     private String brand;
 
-    // Constructors
+    // Constructors, toString
     public CarDto() {}
 
     public CarDto(int id, String registrationNumber, String color, int mileage, String model, String brand) {
@@ -21,6 +21,18 @@ public class CarDto implements Serializable {
         this.mileage = mileage;
         this.model = model;
         this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return "CarDto{" +
+                "id=" + id +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", color='" + color + '\'' +
+                ", mileage=" + mileage +
+                ", model='" + model + '\'' +
+                ", brand='" + brand + '\'' +
+                '}';
     }
 
     // Setters and getters

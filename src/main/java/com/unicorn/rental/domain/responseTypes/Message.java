@@ -1,4 +1,4 @@
-package com.unicorn.rental.responseTypes;
+package com.unicorn.rental.domain.responseTypes;
 
 public class Message {
     private String message;

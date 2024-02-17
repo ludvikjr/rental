@@ -1,6 +1,6 @@
-package com.unicorn.rental.dao;
+package com.unicorn.rental.dao.car;
 
-import com.unicorn.rental.car.Car;
+import com.unicorn.rental.domain.model.car.Car;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
