@@ -1,7 +1,12 @@
 package com.unicorn.rental.domain.model.car;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "car")
 public class Car {
@@ -25,57 +30,4 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "modelId", referencedColumnName = "id", nullable = false)
     private CarModel model;
-
-    // Constructors
-    public Car() {
-    }
-
-    public Car(int id, String registrationNumber, Color color, int mileage, CarModel carModel) {
-        this.id = id;
-        this.registrationNumber = registrationNumber;
-        this.color = color;
-        this.mileage = mileage;
-        this.model = carModel;
-    }
-
-    // Getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getRegistrationNumber() {
-        return registrationNumber;
-    }
-
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
-    }
-
-    public CarModel getModel() {
-        return model;
-    }
-
-    public void setModel(CarModel carModel) {
-        this.model = carModel;
-    }
 }

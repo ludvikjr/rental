@@ -1,7 +1,15 @@
 package com.unicorn.rental.domain.model.car;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "brand")
 public class Brand {
@@ -14,30 +22,4 @@ public class Brand {
 
     @Column(name = "name", unique = true)
     private String name;
-
-    // Constructors
-    public Brand(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Brand() {
-    }
-
-    // Getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
