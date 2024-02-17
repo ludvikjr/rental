@@ -1,18 +1,12 @@
 package com.unicorn.rental.service;
 
-import com.unicorn.rental.dao.car.CarDao;
 import com.unicorn.rental.domain.dto.CarDto;
-import com.unicorn.rental.domain.model.car.Brand;
 import com.unicorn.rental.domain.model.car.Car;
-import com.unicorn.rental.domain.model.car.CarModel;
-import com.unicorn.rental.domain.model.car.Color;
 import com.unicorn.rental.domain.requestTypes.CarRequestType;
-import com.unicorn.rental.service.car.BrandService;
-import com.unicorn.rental.service.car.CarModelService;
+import com.unicorn.rental.helpers.exceptions.BodyMissingRequiredParamsException;
+import com.unicorn.rental.helpers.exceptions.ItemNotFoundException;
 import com.unicorn.rental.service.car.CarService;
-import com.unicorn.rental.service.car.ColorService;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,31 +21,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarServiceTest {
 
     @Autowired
-    private CarModelService carModelService;
-
-    @Autowired
-    private BrandService brandService;
-
-    @Autowired
-    private ColorService colorService;
-
-    @Autowired
-    private CarDao carDao;
-
-    @Autowired
     private CarService carService;
-
-
-    @AfterEach
-    public void tearDown() {
-        carDao.deleteById(2);
-    }
 
     @Test
     public void findCarByIdSuccessful() {
+        assertDoesNotThrow(() -> carService.getCarById(1));
+
         CarDto car = carService.getCarById(1);
 
-        assertNotNull(car);
         assertEquals(car.getModel(), "a5");
         assertEquals(car.getBrand(), "Audi");
         assertEquals(car.getMileage(), 150000);
@@ -60,9 +37,7 @@ public class CarServiceTest {
 
     @Test
     public void findCarByIdFailed() {
-        CarDto car = carService.getCarById(69);
-
-        assertNull(car);
+        assertThrows(ItemNotFoundException.class, () -> carService.getCarById(69));
     }
 
     @Test
@@ -76,16 +51,9 @@ public class CarServiceTest {
 
         Car savedCar = carService.createCar(newCarRequest);
 
-        assertNotNull(savedCar);
-
-        CarModel carModel = carModelService.findCarModelById(1);
-        Color color = colorService.findColorById(1);
-        Brand brand = brandService.findBrandById(1);
-
-
-        assertEquals(savedCar.getModel().getBrand().getName(), brand.getName());
-        assertEquals(savedCar.getModel().getName(), carModel.getName());
-        assertEquals(savedCar.getColor().getName(), color.getName());
+        assertEquals(savedCar.getModel().getBrand().getName(), "BMW");
+        assertEquals(savedCar.getModel().getName(), "e39");
+        assertEquals(savedCar.getColor().getName(), "Red");
         assertEquals(savedCar.getMileage(), 123123);
         assertEquals(savedCar.getRegistrationNumber(), "asdasd");
     }
@@ -98,7 +66,7 @@ public class CarServiceTest {
                 .registrationNumber("asdasd")
                 .build();
 
-        assertNull(carService.createCar(newCarRequest));
+        assertThrows(BodyMissingRequiredParamsException.class, () -> carService.createCar(newCarRequest));
     }
 
     @Test
@@ -109,7 +77,7 @@ public class CarServiceTest {
                 .registrationNumber("asdasd")
                 .build();
 
-        assertNull(carService.createCar(newCarRequest));
+        assertThrows(BodyMissingRequiredParamsException.class, () -> carService.createCar(newCarRequest));
     }
 
     @Test
@@ -125,7 +93,48 @@ public class CarServiceTest {
 
         carService.deleteCarById(savedCar.getId());
 
-        assertNull(carService.getCarById(savedCar.getId()));
+        assertThrows(ItemNotFoundException.class, () -> carService.getCarById(savedCar.getId()));
     }
+
+    @Test
+    public void carUpdateSuccessful() {
+        CarRequestType newCarRequest = CarRequestType.builder()
+                .colorId(1)
+                .modelId(1)
+                .mileage(123123)
+                .registrationNumber("asdasd")
+                .build();
+
+        Car savedCar = carService.createCar(newCarRequest);
+
+        CarRequestType updateCarRequest = CarRequestType.builder()
+                .colorId(2)
+                .modelId(2)
+                .mileage(33333)
+                .build();
+
+        Car updatedCar = carService.updateCar(updateCarRequest, savedCar.getId());
+
+        System.out.println(carService.getCarById(savedCar.getId()).toString());
+
+        assertEquals(updatedCar.getModel().getName(), "e46");
+        assertEquals(updatedCar.getColor().getName(), "Blue");
+        assertEquals(updatedCar.getMileage(), 33333);
+        assertEquals(updatedCar.getRegistrationNumber(), "asdasd");
+    }
+
+    @Test
+    public void carUpdateFailed() {
+        CarRequestType updateCarRequest = CarRequestType.builder()
+                .colorId(1)
+                .modelId(1)
+                .mileage(123123)
+                .registrationNumber("asdasd")
+                .build();
+
+        assertThrows(ItemNotFoundException.class, () -> carService.updateCar(updateCarRequest, 6969));
+    }
+
+
 
 }
