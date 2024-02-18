@@ -31,6 +31,6 @@ public class User {
         this.address = address;
     }
 
-//    @OneToMany
-//    List<CarRental> rentals;
+    @OneToMany(mappedBy = "user")
+    List<CarRental> rentals;
 }

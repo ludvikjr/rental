@@ -13,6 +13,6 @@ import java.util.List;
 public class UserDto {
     @Schema(example = "John Doe")
     String fullName;
-//    List<CarRentalDto> rentals;
+    List<CarRentalDto> rentals;
     AddressDto address;
 }

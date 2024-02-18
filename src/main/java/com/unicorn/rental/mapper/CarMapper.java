@@ -1,7 +1,9 @@
 package com.unicorn.rental.mapper;
 
 import com.unicorn.rental.domain.dto.CarDto;
+import com.unicorn.rental.domain.dto.CarRentalDto;
 import com.unicorn.rental.domain.model.car.Car;
+import com.unicorn.rental.domain.model.user.CarRental;
 import com.unicorn.rental.domain.requestTypes.CarRequestType;
 import com.unicorn.rental.service.car.CarModelService;
 import com.unicorn.rental.service.car.ColorService;
