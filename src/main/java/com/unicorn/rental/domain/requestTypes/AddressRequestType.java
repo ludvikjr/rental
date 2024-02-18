@@ -1,24 +1,20 @@
-package com.unicorn.rental.domain.dto;
+package com.unicorn.rental.domain.requestTypes;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AddressDto {
+@Builder
+public class AddressRequestType {
     @Schema(example = "Madeup")
     String street;
     @Schema(example = "123")
     int building;
-    @Schema(example = "Prague")
-    String city;
-    @Schema(example = "Prague")
-    String region;
-    @Schema(example = "Czech republic")
-    String country;
-    @Schema(example = "11010")
-    String postalCode;
+    @Schema(example = "1")
+    int cityId;
 }

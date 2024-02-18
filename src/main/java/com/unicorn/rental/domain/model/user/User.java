@@ -19,12 +19,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(name = "fullName")
+    @Column(name = "fullName", nullable = false)
     String fullName;
 
     @OneToOne
-    @JoinColumn(name = "addressId", referencedColumnName = "id")
+    @JoinColumn(name = "addressId", referencedColumnName = "id", nullable = false)
     Address address;
+
+    public User(String fullName, Address address) {
+        this.fullName = fullName;
+        this.address = address;
+    }
 
 //    @OneToMany
 //    List<CarRental> rentals;

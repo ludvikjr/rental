@@ -2,13 +2,14 @@ package com.unicorn.rental.mapper;
 
 import com.unicorn.rental.domain.dto.UserDto;
 import com.unicorn.rental.domain.model.user.User;
+import com.unicorn.rental.service.user.AddressService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {AddressService.class})
 public interface UserMapper {
 
     @Mapping(source = "address.city.name", target = "address.city")

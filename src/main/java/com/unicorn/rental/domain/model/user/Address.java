@@ -18,13 +18,13 @@ public class Address {
     @Column(name = "id")
     int id;
 
-    @Column(name = "street")
+    @Column(name = "street", nullable = false)
     String street;
 
     @Column(name = "building")
-    int building;
+    Integer building;
 
     @ManyToOne
-    @JoinColumn(name = "cityId", referencedColumnName = "id")
+    @JoinColumn(name = "cityId", referencedColumnName = "id", nullable = false)
     City city;
 }
