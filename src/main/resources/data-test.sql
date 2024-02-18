@@ -4,21 +4,7 @@ INSERT INTO color (name) VALUES
                              ('Green'),
                              ('Yellow'),
                              ('Black'),
-                             ('White'),
-                             ('Silver'),
-                             ('Gray'),
-                             ('Orange'),
-                             ('Purple'),
-                             ('Brown'),
-                             ('Gold'),
-                             ('Navy'),
-                             ('Tan'),
-                             ('Maroon'),
-                             ('Beige'),
-                             ('Cyan'),
-                             ('Magenta'),
-                             ('Olive'),
-                             ('Teal');
+                             ('White');
 
 INSERT INTO brand (name) VALUES ('BMW'), ('Audi'), ('Porsche');
 

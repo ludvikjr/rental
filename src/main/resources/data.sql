@@ -56,3 +56,72 @@ VALUES
     (18, 210000, 8, 'ZAB5678'),
     (19, 140000, 5, 'CDE9012'),
     (20, 230000, 3, 'FGH1234');
+
+INSERT INTO city (name, region, country, postalCode)
+VALUES
+    ('London', 'Greater London', 'United Kingdom', 'SW1A 1AA'),
+    ('Paris', 'Île-de-France', 'France', '75000'),
+    ('Berlin', 'Berlin', 'Germany', '10115'),
+    ('Madrid', 'Community of Madrid', 'Spain', '28001'),
+    ('Rome', 'Lazio', 'Italy', '00184'),
+    ('Athens', 'Attica', 'Greece', '105 63'),
+    ('Stockholm', 'Stockholm County', 'Sweden', '111 20'),
+    ('Amsterdam', 'North Holland', 'Netherlands', '1012'),
+    ('Vienna', 'Vienna', 'Austria', '1010'),
+    ('Brussels', 'Brussels', 'Belgium', '1000'),
+    ('Oslo', 'Oslo', 'Norway', '0154'),
+    ('Dublin', 'County Dublin', 'Ireland', 'D02'),
+    ('Copenhagen', 'Capital Region of Denmark', 'Denmark', '1050'),
+    ('Warsaw', 'Masovian Voivodeship', 'Poland', '00-001'),
+    ('Budapest', 'Central Hungary', 'Hungary', '1051'),
+    ('Prague', 'Prague', 'Czech Republic', '110 00'),
+    ('Lisbon', 'Lisbon', 'Portugal', '1100-008'),
+    ('Moscow', 'Moscow', 'Russia', '101000'),
+    ('Zurich', 'Zurich', 'Switzerland', '8001'),
+    ('Helsinki', 'Uusimaa', 'Finland', '00100');
+
+INSERT INTO address (street, building, cityId)
+VALUES
+    ('Street1', 1, 1),
+    ('Street2', 2, 2),
+    ('Street3', 3, 3),
+    ('Street4', 4, 4),
+    ('Street5', 5, 5),
+    ('Street6', 6, 6),
+    ('Street7', 7, 7),
+    ('Street8', 8, 8),
+    ('Street9', 9, 9),
+    ('Street10', 10, 10),
+    ('Street11', 11, 11),
+    ('Street12', 12, 12),
+    ('Street13', 13, 13),
+    ('Street14', 14, 14),
+    ('Street15', 15, 15),
+    ('Street16', 16, 16),
+    ('Street17', 17, 17),
+    ('Street18', 18, 18),
+    ('Street19', 19, 19),
+    ('Street20', 20, 20);
+
+INSERT INTO user (fullName, addressId)
+VALUES
+    ('User1', 1),
+    ('User2', 2),
+    ('User3', 3),
+    ('User4', 4),
+    ('User5', 5),
+    ('User6', 6),
+    ('User7', 7),
+    ('User8', 8),
+    ('User9', 9),
+    ('User10', 10),
+    ('User11', 11),
+    ('User12', 12),
+    ('User13', 13),
+    ('User14', 14),
+    ('User15', 15),
+    ('User16', 16),
+    ('User17', 17),
+    ('User18', 18),
+    ('User19', 19),
+    ('User20', 20);

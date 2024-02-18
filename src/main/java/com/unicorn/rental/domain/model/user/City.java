@@ -6,26 +6,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "city")
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
 
-    @Column(name = "fullName")
-    String fullName;
+    @Column(name = "name")
+    String name;
 
-    @OneToOne
-    @JoinColumn(name = "addressId", referencedColumnName = "id")
-    Address address;
+    @Column(name = "region")
+    String region;
 
-//    @OneToMany
-//    List<CarRental> rentals;
+    @Column(name = "country")
+    String country;
+
+    @Column(name = "postalCode")
+    String postalCode;
 }
