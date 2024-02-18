@@ -103,7 +103,7 @@ VALUES
     ('Street19', 19, 19),
     ('Street20', 20, 20);
 
-INSERT INTO user (fullName, addressId)
+INSERT INTO _user (fullName, addressId)
 VALUES
     ('User1', 1),
     ('User2', 2),
