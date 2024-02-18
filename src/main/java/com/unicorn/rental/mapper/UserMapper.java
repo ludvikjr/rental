@@ -2,7 +2,7 @@ package com.unicorn.rental.mapper;
 
 import com.unicorn.rental.domain.dto.CarRentalDto;
 import com.unicorn.rental.domain.dto.UserDto;
-import com.unicorn.rental.domain.model.user.CarRental;
+import com.unicorn.rental.domain.model.carRental.CarRental;
 import com.unicorn.rental.domain.model.user.User;
 import com.unicorn.rental.service.user.AddressService;
 import org.mapstruct.Mapper;

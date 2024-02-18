@@ -1,5 +1,6 @@
 package com.unicorn.rental.domain.model.user;
 
+import com.unicorn.rental.domain.model.carRental.CarRental;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

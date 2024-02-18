@@ -1,6 +1,7 @@
-package com.unicorn.rental.domain.model.user;
+package com.unicorn.rental.domain.model.carRental;
 
 import com.unicorn.rental.domain.model.car.Car;
+import com.unicorn.rental.domain.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class CarRental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
 
     @Column(name = "rentedFrom")

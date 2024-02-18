@@ -1,11 +1,11 @@
 package com.unicorn.rental.service.user;
 
+import com.unicorn.rental.dao.user.CityDao;
 import com.unicorn.rental.dao.user.UserDao;
 import com.unicorn.rental.domain.dto.UserDto;
 import com.unicorn.rental.domain.model.user.Address;
 import com.unicorn.rental.domain.model.user.User;
 import com.unicorn.rental.domain.requestTypes.UserRequestType;
-import com.unicorn.rental.helpers.exceptions.BodyMissingRequiredParamsException;
 import com.unicorn.rental.helpers.exceptions.ItemNotFoundException;
 import com.unicorn.rental.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,14 @@ public class UserService {
 
     private final AddressService addressService;
 
-    private final CityService cityService;
+    private final CityDao cityDao;
 
     @Autowired
-    public UserService(UserDao userDao, UserMapper userMapper, AddressService addressService, CityService cityService) {
+    public UserService(UserDao userDao, UserMapper userMapper, AddressService addressService, CityDao cityDao) {
         this.userDao = userDao;
         this.userMapper = userMapper;
         this.addressService = addressService;
-        this.cityService = cityService;
+        this.cityDao = cityDao;
     }
 
     public List<UserDto> listUsers() {
@@ -37,12 +37,10 @@ public class UserService {
 
     public User createUser(UserRequestType userRequestType) {
 
-        if (cityService.findCityById(userRequestType.getAddress().getCityId()) == null)
+        if (cityDao.findById(userRequestType.getAddress().getCityId()).isEmpty())
             throw new ItemNotFoundException();
 
         Address address = addressService.createAddress(userRequestType.getAddress());
-
-        if (address == null || address.getCity() == null) throw new BodyMissingRequiredParamsException();
 
         User user = new User(userRequestType.getFullName(), address);
 
