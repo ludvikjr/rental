@@ -22,8 +22,17 @@ public class CarController {
     }
 
     @GetMapping
-    public List<CarDto> listCars() {
-        return carService.listCars();
+    public ResponseEntity<List<CarDto>> listCars() {
+        try {
+
+            return ResponseEntity.ok(carService.listCars());
+
+        } catch (Exception e) {
+
+            System.out.println("An exception has occurred: " + e);
+            return ResponseEntity.internalServerError().build();
+
+        }
     }
 
     @GetMapping("{id}")
