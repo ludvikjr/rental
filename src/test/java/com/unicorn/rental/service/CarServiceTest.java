@@ -97,6 +97,11 @@ public class CarServiceTest {
     }
 
     @Test
+    public void carDeleteFailed() {
+        assertThrows(ItemNotFoundException.class, () -> carService.getCarById(12312312));
+    }
+
+    @Test
     public void carUpdateSuccessful() {
         CarRequestType newCarRequest = CarRequestType.builder()
                 .colorId(1)
