@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Message {
-    @Schema(example = "<Entity> created successfully!")
+    @Schema(example = "<Entity> created/updated/deleted successfully!")
     private String message;
 }

@@ -53,6 +53,12 @@ public class CarService {
     }
 
     public void deleteCarById(int id) {
+
+        Optional<Car> car = carDao.findById(id);
+        if (car.isEmpty()) {
+            throw new ItemNotFoundException();
+        }
+
         carDao.deleteById(id);
     }
 

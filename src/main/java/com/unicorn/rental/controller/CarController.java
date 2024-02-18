@@ -6,6 +6,11 @@ import com.unicorn.rental.domain.responseTypes.Message;
 import com.unicorn.rental.helpers.exceptions.BodyMissingRequiredParamsException;
 import com.unicorn.rental.helpers.exceptions.ItemNotFoundException;
 import com.unicorn.rental.service.car.CarService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +27,10 @@ public class CarController {
     }
 
     @GetMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Car list has been sent to client."),
+    })
+    @Operation(summary = "List cars", description = "Lists all cars.")
     public ResponseEntity<List<CarDto>> listCars() {
         try {
 
@@ -36,6 +45,11 @@ public class CarController {
     }
 
     @GetMapping("{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Car has been found and sent back to client.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CarDto.class))),
+            @ApiResponse(responseCode = "404", description = "Car has not been found.", content = @Content)
+    })
+    @Operation(summary = "Select car by id", description = "Select car by id. If it doesn't exist, API returns 404.")
     public ResponseEntity<CarDto> getCarById(@PathVariable("id") int id) {
         try {
 
@@ -55,6 +69,11 @@ public class CarController {
     }
 
     @PostMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Car has been created.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Message.class))),
+            @ApiResponse(responseCode = "400", description = "Required body parameters are either missing, or entities identified by these body parameters are non-existent.", content = @Content)
+    })
+    @Operation(summary = "Create car", description = "Create new car.")
     public ResponseEntity<Message> createCar(@RequestBody CarRequestType car) {
         try {
 
@@ -75,11 +94,20 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Car has been deleted.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Message.class))),
+            @ApiResponse(responseCode = "404", description = "Car has not been found.", content = @Content)
+    })
+    @Operation(summary = "Delete car", description = "Deletes car based on id provided. If the car doesn't exist, 404 is sent by the API.")
     public ResponseEntity<Message> deleteCarById(@PathVariable int id) {
         try {
 
             carService.deleteCarById(id);
             return ResponseEntity.ok(new Message("Car deleted successfully!"));
+
+        } catch (ItemNotFoundException e) {
+
+            return ResponseEntity.notFound().build();
 
         } catch (Exception e) {
 
@@ -90,6 +118,11 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Car has been updated.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Message.class))),
+            @ApiResponse(responseCode = "404", description = "Car has not been found.", content = @Content)
+    })
+    @Operation(summary = "Update car", description = "Updates car based on id provided. If car is not found, API returns 404.")
     public ResponseEntity<Message> updateCarById(@PathVariable int id, @RequestBody CarRequestType carRequestType) {
         try {
 

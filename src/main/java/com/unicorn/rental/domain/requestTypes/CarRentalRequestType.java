@@ -15,8 +15,11 @@ import java.util.Date;
 public class CarRentalRequestType {
     @Schema(example = "1")
     private int carId;
+
     @Schema(example = "1")
     private int userId;
+
     private Date rentedTo;
+
     private Date rentedFrom;
 }

@@ -6,6 +6,7 @@ import com.unicorn.rental.domain.responseTypes.Message;
 import com.unicorn.rental.helpers.exceptions.BodyMissingRequiredParamsException;
 import com.unicorn.rental.helpers.exceptions.ItemNotFoundException;
 import com.unicorn.rental.service.user.UserService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
+@OpenAPIDefinition()
 public class UserController {
 
     private final UserService userService;
